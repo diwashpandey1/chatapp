@@ -21,6 +21,7 @@ body {
    display: flex;
    flex-direction: column;
    overflow: hidden;
+   height: 90vh;
 }
 
 /* Chat header (Room Name, Code, Leave Button) */
@@ -195,7 +196,10 @@ body {
    background-color: #333; /* Slightly lighter dark for input area */
    padding: 1rem 1.5rem;
    display: flex;
+   position: fixed;
+   bottom: 0;
    gap: 1rem;
+   width: 100%;
    border-top: 1px solid #444; /* Subtle separator */
 }
 .chat-input-area input[type="text"] {
@@ -248,7 +252,9 @@ body {
 }
 
 .message-bubble.system-message .message-info {
-   justify-content: center; /* Center "System" name if it appears */
+   justify-content: center;
+   text-align: center;
+    /* Center "System" name if it appears */
 }
 
 .message-bubble.system-message .message-text {
