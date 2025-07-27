@@ -263,21 +263,3 @@ body {
    border-radius: 0.75rem;
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
-   .chat-container {
-      width: 100%; /* Full width on small screens */
-      padding: 0.5rem; /* Reduce padding */
-   }
-   .chat-header {
-      flex-direction: column; /* Stack header elements */
-      align-items: flex-start; /* Align to start */
-   }
-   .chat-header-info {
-      margin-bottom: 0.5rem; /* Space between info and leave button */
-   }
-   .leave-button {
-      width: 100%; /* Full width button on small screens */
-      text-align: center;
-   }
-}
