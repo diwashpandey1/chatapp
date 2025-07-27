@@ -227,3 +227,30 @@ body {
 #copyShareLinkButton {
    margin-top: 0.5rem; /* Adjusted margin */
 }
+
+@media screen and (max-width: 640px) {
+   .flip-container {
+       width: 100%; /* Full width on small screens */
+       height: 100%;
+       margin-top: 0;
+   }
+    .flipper {
+        height: 100%; /* Full height on small screens */
+    }
+    .front,
+    .back {
+        height: 100vh; /* Ensure full height for content */
+        border-radius: 0;
+    }
+   .form-card h2 {
+       font-size: 1.5rem; /* Smaller heading on small screens */
+   }
+   .form-card input[type="text"] {
+       font-size: 0.9rem; /* Smaller input text on small screens */
+   }
+   .btn-gradient-purple,
+   .btn-gradient-green {
+       font-size: 0.85rem; /* Smaller button text on small screens */
+   }
+  
+}

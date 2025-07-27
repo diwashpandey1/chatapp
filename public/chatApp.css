@@ -12,47 +12,15 @@ body {
    overflow: hidden; /* Prevent scrollbars on body */
 }
 
-/* Navigation Bar - Replicated from index.html */
-.navbar {
-   width: 100%;
-   background-color: #2a003a; /* Darker purple */
-   padding: 1rem 2rem;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-   z-index: 10; /* Ensure it stays on top */
-}
-.navbar-title {
-   font-size: 1.5rem;
-   font-weight: bold;
-   color: #e0e0e0;
-}
-.navbar-links a {
-   color: #a0a0a0;
-   margin-left: 1.5rem;
-   text-decoration: none;
-   transition: color 0.3s ease;
-}
-.navbar-links a:hover {
-   color: #ffffff;
-}
-
 /* Main chat container */
 .chat-container {
    flex-grow: 1; /* Allows the chat container to take available space */
    width: 100%;
    max-width: 800px; /* Max width for the chat interface */
    background-color: #28283d; /* Dark card background */
-   border-radius: 1rem;
-   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-   margin: 2rem auto; /* Center the chat container and add vertical margin */
    display: flex;
    flex-direction: column;
-   overflow: hidden; /* Hide overflow for chat messages */
-   height: calc(
-      100vh - 4rem - 64px
-   ); /* Calculate height: 100vh - (2*margin) - navbar_height */
+   overflow: hidden;
 }
 
 /* Chat header (Room Name, Code, Leave Button) */
@@ -103,6 +71,7 @@ body {
    box-shadow: 0 6px 15px rgba(220, 53, 69, 0.5);
 }
 
+/* Chat messages area */
 /* Chat messages area */
 #messages {
    flex-grow: 1; /* Allows messages to fill vertical space */
@@ -271,35 +240,44 @@ body {
    z-index: 1000;
 }
 
-/* ... existing CSS ... */
-
-.message-bubble.system-message {
-    align-self: center; /* Center system messages */
-    text-align: center;
-    background-color: transparent; /* No background for system messages */
-    color: #a0a0a0; /* Lighter text color */
-    font-style: italic;
-    font-size: 0.9em;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.5rem;
-    max-width: fit-content; /* Adjust width to content */
-    margin: 0.5rem auto; /* Center with margin */
-}
-
 /* Hide avatar and time for system messages */
 .message-bubble.system-message .message-avatar,
 .message-bubble.system-message .message-info .time,
 .message-bubble.system-message .message-info .name {
-    display: none;
+   display: none;
 }
 
 .message-bubble.system-message .message-info {
-    justify-content: center; /* Center "System" name if it appears */
+   justify-content: center; /* Center "System" name if it appears */
 }
 
 .message-bubble.system-message .message-text {
-    background-color: rgba(128, 128, 128, 0.2); /* Slight background for readability */
-    color: #a0a0a0;
-    padding: 0.5rem 1rem;
-    border-radius: 0.75rem;
+   background-color: rgba(
+      128,
+      128,
+      128,
+      0.2
+   ); /* Slight background for readability */
+   color: #a0a0a0;
+   padding: 0.5rem 1rem;
+   border-radius: 0.75rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+   .chat-container {
+      width: 100%; /* Full width on small screens */
+      padding: 0.5rem; /* Reduce padding */
+   }
+   .chat-header {
+      flex-direction: column; /* Stack header elements */
+      align-items: flex-start; /* Align to start */
+   }
+   .chat-header-info {
+      margin-bottom: 0.5rem; /* Space between info and leave button */
+   }
+   .leave-button {
+      width: 100%; /* Full width button on small screens */
+      text-align: center;
+   }
 }
