@@ -1,0 +1,305 @@
+/* Base styles consistent with index.html */
+body {
+   font-family: "Inter", sans-serif;
+   background-color: #1a1a2e; /* Dark background */
+   color: #e0e0e0; /* Light text color */
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   min-height: 100vh;
+   padding: 0;
+   margin: 0;
+   overflow: hidden; /* Prevent scrollbars on body */
+}
+
+/* Navigation Bar - Replicated from index.html */
+.navbar {
+   width: 100%;
+   background-color: #2a003a; /* Darker purple */
+   padding: 1rem 2rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+   z-index: 10; /* Ensure it stays on top */
+}
+.navbar-title {
+   font-size: 1.5rem;
+   font-weight: bold;
+   color: #e0e0e0;
+}
+.navbar-links a {
+   color: #a0a0a0;
+   margin-left: 1.5rem;
+   text-decoration: none;
+   transition: color 0.3s ease;
+}
+.navbar-links a:hover {
+   color: #ffffff;
+}
+
+/* Main chat container */
+.chat-container {
+   flex-grow: 1; /* Allows the chat container to take available space */
+   width: 100%;
+   max-width: 800px; /* Max width for the chat interface */
+   background-color: #28283d; /* Dark card background */
+   border-radius: 1rem;
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+   margin: 2rem auto; /* Center the chat container and add vertical margin */
+   display: flex;
+   flex-direction: column;
+   overflow: hidden; /* Hide overflow for chat messages */
+   height: calc(
+      100vh - 4rem - 64px
+   ); /* Calculate height: 100vh - (2*margin) - navbar_height */
+}
+
+/* Chat header (Room Name, Code, Leave Button) */
+.chat-header {
+   background-color: #333; /* Slightly lighter dark for header */
+   padding: 1rem 1.5rem;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   color: #e0e0e0;
+   border-bottom: 1px solid #444; /* Subtle separator */
+}
+.chat-header-info {
+   display: flex;
+   align-items: center;
+}
+.chat-header-info img {
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   margin-right: 1rem;
+   object-fit: cover;
+   background-color: #555; /* Placeholder background */
+}
+.chat-header-details h3 {
+   font-size: 1.25rem;
+   font-weight: bold;
+   margin-bottom: 0.2rem;
+}
+.chat-header-details p {
+   font-size: 0.85rem;
+   color: #a0a0a0;
+}
+.leave-button {
+   background-image: linear-gradient(to right, #dc3545 0%, #ff6b6b 100%);
+   color: white;
+   padding: 0.5rem 1rem;
+   border-radius: 0.5rem;
+   font-weight: bold;
+   transition: transform 0.2s ease, box-shadow 0.2s ease;
+   box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
+   cursor: pointer;
+   text-decoration: none;
+   font-size: 0.9rem;
+}
+.leave-button:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 6px 15px rgba(220, 53, 69, 0.5);
+}
+
+/* Chat messages area */
+#messages {
+   flex-grow: 1; /* Allows messages to fill vertical space */
+   padding: 1.5rem;
+   overflow-y: auto; /* Enable scrolling for messages */
+   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+   display: flex;
+   flex-direction: column;
+   gap: 1rem; /* Space between messages */
+   /* No max-height needed here if parent has defined height and flex-grow is 1 */
+
+   /* Custom scrollbar styling */
+   scrollbar-width: thin; /* For Firefox */
+   scrollbar-color: #6a0dad #333; /* thumb color track color */
+}
+
+/* Webkit scrollbar styling (Chrome, Safari, Edge) */
+#messages::-webkit-scrollbar {
+   width: 8px; /* Width of the scrollbar */
+}
+
+#messages::-webkit-scrollbar-track {
+   background: #333; /* Color of the scrollbar track */
+   border-radius: 10px;
+}
+
+#messages::-webkit-scrollbar-thumb {
+   background-color: #6a0dad; /* Color of the scrollbar thumb */
+   border-radius: 10px;
+   border: 2px solid #333; /* Padding around the thumb */
+}
+
+/* Hide scrollbar on mobile devices */
+@media (max-width: 768px) {
+   /* Adjust breakpoint as needed for mobile */
+   #messages {
+      scrollbar-width: none; /* Hide scrollbar for Firefox */
+   }
+
+   #messages::-webkit-scrollbar {
+      display: none; /* Hide scrollbar for Webkit browsers */
+   }
+}
+
+/* Individual message styling */
+.message-bubble {
+   display: flex;
+   align-items: flex-start;
+   gap: 0.75rem;
+   max-width: 80%; /* Limit bubble width */
+}
+.message-bubble.sent {
+   align-self: flex-end; /* Align to right for sent messages */
+   flex-direction: row-reverse; /* Reverse order for sent messages */
+}
+.message-bubble.received {
+   align-self: flex-start; /* Align to left for received messages */
+}
+
+.message-avatar {
+   width: 36px;
+   height: 36px;
+   border-radius: 50%;
+   object-fit: cover;
+   background-color: #555; /* Placeholder background */
+   flex-shrink: 0; /* Prevent avatar from shrinking */
+}
+
+.message-content-wrapper {
+   display: flex;
+   flex-direction: column;
+}
+.message-bubble.sent .message-content-wrapper {
+   align-items: flex-end;
+}
+.message-bubble.received .message-content-wrapper {
+   align-items: flex-start;
+}
+
+.message-info {
+   display: flex;
+   font-size: 0.75rem;
+   color: #a0a0a0;
+   margin-bottom: 0.2rem;
+}
+.message-bubble.sent .message-info {
+   flex-direction: row-reverse; /* Time on left, name on right for sent */
+}
+.message-bubble.received .message-info {
+   flex-direction: row; /* Name on left, time on right for received */
+}
+.message-info .name {
+   font-weight: bold;
+   margin-right: 0.5rem;
+}
+.message-bubble.sent .message-info .name {
+   margin-left: 0.5rem;
+   margin-right: 0;
+}
+
+.message-text {
+   background-color: #3a3a5e; /* Darker purple for message bubble */
+   color: #e0e0e0;
+   padding: 0.75rem 1rem;
+   border-radius: 1.25rem; /* More rounded corners */
+   word-wrap: break-word; /* Break long words */
+   max-width: 100%; /* Ensure text doesn't overflow bubble */
+   line-height: 1.4;
+}
+.message-bubble.sent .message-text {
+   background-color: #6a0dad; /* Purple gradient color for sent */
+   border-bottom-right-radius: 0.25rem; /* Pointy corner for sent */
+}
+.message-bubble.received .message-text {
+   background-color: #3a3a5e; /* Default dark for received */
+   border-bottom-left-radius: 0.25rem; /* Pointy corner for received */
+}
+
+/* Chat input area */
+.chat-input-area {
+   background-color: #333; /* Slightly lighter dark for input area */
+   padding: 1rem 1.5rem;
+   display: flex;
+   gap: 1rem;
+   border-top: 1px solid #444; /* Subtle separator */
+}
+.chat-input-area input[type="text"] {
+   flex-grow: 1;
+   padding: 0.75rem 1rem;
+   border: none; /* No border for input */
+   background-color: #444; /* Dark input background */
+   color: #e0e0e0;
+   border-radius: 0.5rem;
+   font-size: 1rem;
+   outline: none; /* Remove outline on focus */
+}
+.chat-input-area input[type="text"]::placeholder {
+   color: #a0a0a0;
+}
+.chat-input-area button {
+   background-image: linear-gradient(to right, #28a745 0%, #20c997 100%);
+   color: white;
+   padding: 0.75rem 1.5rem;
+   border-radius: 0.5rem;
+   font-weight: bold;
+   transition: transform 0.2s ease, box-shadow 0.2s ease;
+   box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+   cursor: pointer;
+   text-decoration: none;
+   font-size: 1rem;
+}
+.chat-input-area button:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 6px 15px rgba(40, 167, 69, 0.5);
+}
+
+/* Copyright Watermark */
+.copyright {
+   position: fixed;
+   bottom: 8px;
+   right: 12px;
+   font-size: 0.75rem;
+   color: rgba(255, 255, 255, 0.2);
+   pointer-events: none;
+   font-family: "Inter", sans-serif;
+   z-index: 1000;
+}
+
+/* ... existing CSS ... */
+
+.message-bubble.system-message {
+    align-self: center; /* Center system messages */
+    text-align: center;
+    background-color: transparent; /* No background for system messages */
+    color: #a0a0a0; /* Lighter text color */
+    font-style: italic;
+    font-size: 0.9em;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.5rem;
+    max-width: fit-content; /* Adjust width to content */
+    margin: 0.5rem auto; /* Center with margin */
+}
+
+/* Hide avatar and time for system messages */
+.message-bubble.system-message .message-avatar,
+.message-bubble.system-message .message-info .time,
+.message-bubble.system-message .message-info .name {
+    display: none;
+}
+
+.message-bubble.system-message .message-info {
+    justify-content: center; /* Center "System" name if it appears */
+}
+
+.message-bubble.system-message .message-text {
+    background-color: rgba(128, 128, 128, 0.2); /* Slight background for readability */
+    color: #a0a0a0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+}

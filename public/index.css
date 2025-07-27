@@ -1,0 +1,229 @@
+/* Custom styles for the copyright watermark */
+.copyright {
+   position: fixed;
+   bottom: 8px;
+   right: 12px;
+   font-size: 0.75rem;
+   color: rgba(255, 255, 255, 0.2); /* Light color for dark background */
+   pointer-events: none;
+   font-family: "Inter", sans-serif;
+   z-index: 1000;
+}
+body {
+   font-family: "Inter", sans-serif;
+   background-color: #1a1a2e; /* Dark background */
+   color: #e0e0e0; /* Light text color */
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: flex-start; /* Align to top for header */
+   min-height: 100vh;
+   padding: 0; /* Remove default padding */
+   margin: 0; /* Remove default margin */
+   overflow-x: hidden; /* Prevent horizontal scroll during flip */
+}
+
+/* Navigation Bar */
+.navbar {
+   width: 100%;
+   background-color: #2a003a; /* Darker purple */
+   padding: 1rem 2rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+   margin-bottom: 2rem; /* Space below navbar */
+}
+.navbar-title {
+   font-size: 1.5rem;
+   font-weight: bold;
+   color: #e0e0e0;
+}
+.navbar-links a {
+   color: #a0a0a0;
+   margin-left: 1.5rem;
+   text-decoration: none;
+   transition: color 0.3s ease;
+}
+.navbar-links a:hover {
+   color: #ffffff;
+}
+
+/* Message Box */
+.message-box {
+   position: fixed;
+   top: 80px; /* Below navbar */
+   left: 50%;
+   transform: translateX(-50%);
+   padding: 12px 24px;
+   border-radius: 8px;
+   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+   z-index: 1000;
+   opacity: 0;
+   transition: opacity 0.3s ease-in-out;
+   text-align: center;
+   color: #e0e0e0;
+}
+.message-box.show {
+   opacity: 1;
+}
+.message-box.success {
+   background-color: #28a745; /* Green for success */
+   border: 1px solid #218838;
+}
+.message-box.error {
+   background-color: #dc3545; /* Red for error */
+   border: 1px solid #c82333;
+}
+
+/* Flip Container */
+.flip-container {
+   perspective: 1000px; /* For 3D effect */
+   width: 100%;
+   max-width: 450px; /* Max width for the card */
+   min-height: 450px; /* Minimum height to prevent collapse */
+   height: auto; /* Allow height to adjust based on content */
+   position: relative;
+   margin-top: 2rem; /* Space below message box */
+}
+
+.flipper {
+   transition: transform 0.6s; /* Smooth flip animation */
+   transform-style: preserve-3d; /* Enable 3D transformations */
+   position: relative;
+   width: 100%;
+   height: 100%; /* Height will be determined by flip-container's content */
+}
+
+.flip-container.flipped .flipper {
+   transform: rotateY(180deg); /* Rotate for flip */
+}
+
+.front,
+.back {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   /* height: 100%; Removed fixed height for dynamic content */
+   min-height: fit-content; /* Allow content to define height */
+   backface-visibility: hidden; /* Hide back face during flip */
+   border-radius: 1rem; /* Rounded corners for cards */
+   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); /* Deeper shadow */
+   padding: 2rem; /* Slightly reduced padding for compactness */
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.front {
+   background-color: #28283d; /* Darker card background */
+   z-index: 2;
+   transform: rotateY(0deg);
+}
+
+.back {
+   background-color: #28283d; /* Same dark background */
+   transform: rotateY(180deg); /* Initial rotation for back face */
+}
+
+/* Form elements styling */
+.form-card h2 {
+   font-size: 1.8rem; /* Slightly smaller font size */
+   font-weight: bold;
+   color: #e0e0e0;
+   margin-bottom: 1rem; /* Reduced margin */
+   text-align: center;
+}
+.form-card p.text-sm {
+   /* For the description text */
+   margin-bottom: 1.5rem; /* Reduced margin */
+}
+.form-card label {
+   display: block;
+   color: #a0a0a0;
+   font-size: 0.85rem; /* Slightly smaller font size */
+   margin-bottom: 0.4rem; /* Reduced margin */
+}
+.form-card input[type="text"] {
+   width: 100%;
+   padding: 0.7rem 1rem; /* Reduced padding */
+   border: 1px solid #444; /* Darker border */
+   background-color: #333; /* Dark input background */
+   color: #e0e0e0; /* Light text in input */
+   border-radius: 0.5rem;
+   margin-bottom: 1rem; /* Reduced margin */
+   font-size: 0.95rem; /* Slightly smaller font size */
+   transition: border-color 0.3s ease;
+}
+.form-card input[type="text"]:focus {
+   border-color: #6a0dad; /* Purple focus ring */
+   outline: none;
+}
+
+/* Gradient Buttons */
+.btn-gradient-purple,
+.btn-gradient-green {
+   padding: 0.7rem 1.2rem; /* Reduced padding */
+   font-size: 0.95rem; /* Slightly smaller font size */
+   border-radius: 0.5rem;
+   font-weight: bold;
+   transition: transform 0.2s ease, box-shadow 0.2s ease;
+   cursor: pointer;
+   width: 100%;
+   text-align: center;
+   text-decoration: none;
+   color: white; /* Ensure text color is white */
+}
+.btn-gradient-purple {
+   background-image: linear-gradient(to right, #6a0dad 0%, #8a2be2 100%);
+   box-shadow: 0 4px 15px rgba(106, 13, 173, 0.4);
+}
+.btn-gradient-purple:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 6px 20px rgba(106, 13, 173, 0.6);
+}
+
+.btn-gradient-green {
+   background-image: linear-gradient(to right, #28a745 0%, #20c997 100%);
+   box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+.btn-gradient-green:hover {
+   transform: translateY(-2px);
+   box-shadow: 0 6px 20px rgba(40, 167, 69, 0.6);
+}
+
+.or-separator {
+   margin: 1rem 0; /* Reduced margin */
+   font-size: 0.9rem; /* Slightly smaller font */
+}
+.or-separator::before,
+.or-separator::after {
+   width: 35%; /* Slightly smaller line width */
+}
+
+/* Room code display */
+#generatedCodeDisplay {
+   padding: 0.8rem; /* Reduced padding */
+   margin-bottom: 1rem; /* Reduced margin */
+}
+#roomCodeText {
+   font-size: 2rem; /* Slightly smaller font for code */
+   margin-bottom: 0.4rem; /* Reduced margin */
+}
+#shareableLinkDisplay {
+   margin-top: 0.8rem; /* Reduced margin */
+   padding: 0.8rem; /* Reduced padding */
+}
+#shareableLinkText {
+   font-size: 0.8rem; /* Smaller font for link text */
+}
+.regenerate-button,
+#copyShareLinkButton {
+   font-size: 0.8rem; /* Smaller font for buttons */
+   padding: 0.3rem 0.6rem; /* Smaller padding */
+}
+#copyShareLinkButton {
+   margin-top: 0.5rem; /* Adjusted margin */
+}

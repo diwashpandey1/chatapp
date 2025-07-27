@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Fifth Mind - Chat Rooms</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="index.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Message Box for notifications -->
+  <div id="messageBox" class="message-box"></div>
+
+  <div class="flip-container">
+    <div class="flipper">
+      <!-- Front side: Join Room Form -->
+      <div class="front form-card">
+        <h2 class="flex items-center justify-center mb-6">
+          <svg class="w-7 h-7 mr-2 text-purple-400" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd">
+            </path>
+          </svg>
+          Join the Mind
+        </h2>
+        <p class="text-sm text-center text-gray-400 mb-6">Enter your details to connect with up to 4 others</p>
+        <form id="joinRoomForm" class="w-full">
+          <div class="mb-4">
+            <label for="joinPersonName">Your Name</label>
+            <input type="text" id="joinPersonName" name="personName" placeholder="Enter your name" required>
+          </div>
+          <div class="mb-6">
+            <label for="joinRoomId">Room Code</label>
+            <input type="text" id="joinRoomId" name="roomId" placeholder="6-digit code" maxlength="6" required>
+          </div>
+          <button type="submit" class="btn-gradient-purple mb-4">Enter the Mind</button>
+          <div class="or-separator">or</div>
+          <button type="button" id="flipToCreate" class="btn-gradient-green mt-4">Create a New Mind</button>
+        </form>
+      </div>
+
+      <!-- Back side: Create Room Form -->
+      <div class="back form-card">
+        <h2 class="flex items-center justify-center mb-6">
+          <svg class="w-7 h-7 mr-2 text-green-400" fill="currentColor" viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"></path>
+            <path fill-rule="evenodd"
+              d="M4 5a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2h-1.586a1 1 0 01-.707-.293l-1.121-1.121A1 1 0 009.172 3H10a1 1 0 110 2H9.172a1 1 0 00-.707.293L7.364 6.293A1 1 0 016.657 6H4zm10 4a1 1 0 100 2h3a1 1 0 100-2h-3zm-1 4a1 1 0 100 2h4a1 1 0 100-2h-4z"
+              clip-rule="evenodd"></path>
+          </svg>
+          Create a New Mind
+        </h2>
+        <p class="text-sm text-center text-gray-400 mb-6">Set up a new room to invite others</p>
+        <form id="createRoomForm" class="w-full">
+          <div class="mb-4">
+            <label for="createPersonName">Your Name</label>
+            <input type="text" id="createPersonName" name="personName" placeholder="Enter your name" required>
+          </div>
+          <div class="mb-4">
+            <label for="createRoomName">Room Name</label>
+            <input type="text" id="createRoomName" name="roomName" placeholder="e.g., Shadow Circle" required>
+          </div>
+          <div id="generatedCodeDisplay" class="bg-gray-700 p-4 rounded-lg text-center mb-4">
+            <p class="text-gray-400 text-sm mb-1">Room Code</p>
+            <p id="roomCodeText" class="text-white text-3xl font-extrabold tracking-wider">XXXXXX</p>
+            <input type="hidden" id="roomCodeInput">
+            <button type="button" id="regenerateCodeButton" class="regenerate-button">Regenerate</button>
+          </div>
+          <div id="shareableLinkDisplay" class="bg-gray-700 p-4 rounded-lg text-center mb-6 hidden">
+            <p class="text-gray-400 text-sm mb-1">Shareable Link</p>
+            <p id="shareableLinkText" class="text-white text-sm font-bold break-all"></p>
+            <button type="button" id="copyShareLinkButton"
+              class="mt-2 bg-blue-600 text-white px-4 py-1 rounded-lg text-xs hover:bg-blue-700 transition duration-300 ease-in-out shadow-md">
+              Copy Link
+            </button>
+          </div>
+          <button type="submit" class="btn-gradient-green mb-4">Create Room</button>
+          <div class="or-separator">or</div>
+          <button type="button" id="flipToJoin" class="btn-gradient-purple mt-4">Join an Existing Mind</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright Watermark -->
+  <div class="copyright">
+    &copy; by diwash || <span id="currentYear"></span>
+  </div>
+
+  <!-- Socket.IO CDN -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

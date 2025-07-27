@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat Room</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="chatApp.css">
+</head>
+
+<body>
+
+    <!-- Main Chat Container -->
+  <div class="chat-container">
+    <!-- Chat Header -->
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <img src="https://placehold.co/40x40/555555/FFFFFF?text=R" alt="Room Avatar" class="room-avatar">
+        <div class="chat-header-details">
+          <h3 id="roomNameDisplay">Room Name</h3>
+          <p id="roomCodeDisplay" class="text-sm">Room Code: XXXX</p>
+        </div>
+      </div>
+      <button id="leaveRoomButton" class="leave-button">Leave</button>
+    </div>
+
+    <!-- Chat Messages Area -->
+    <div id="messages">
+      <!-- Messages will be appended here -->
+    </div>
+
+    <!-- Chat Input Area -->
+    <div class="chat-input-area">
+      <input id="messageInput" type="text" placeholder="Enter your message" autocomplete="off">
+      <button id="sendMessageButton">Send</button>
+    </div>
+  </div>
+
+  <!-- Copyright Watermark -->
+  <div class="copyright">
+    &copy; by diwash || <span id="currentYear"></span>
+  </div>
+
+  <!-- Socket.IO CDN -->
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="chatapp.js"></script>
+</body>
+
+</html>
